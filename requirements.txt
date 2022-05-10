@@ -1,0 +1,5 @@
+beautifulsoup4==4.11.1
+logzero==1.7.0
+PyExecJS==1.5.1
+requests==2.23.0
+SocksiPy_branch==1.01
