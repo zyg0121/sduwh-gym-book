@@ -51,10 +51,10 @@ python main.py --userid [学号] --passwd [密码] --area [区域] --retry [重�
 
 附：开始和结束时间
 周一至周五：16:30-18:30 19:30-21:30
-周六周日：待更新
+周六周日：8:00-10:00 10:00-12:00 14:00-16:00 16:30-18:30 19:30-21:30
 
 ### Example
 
 ```shell
-python app.py --userid 201900639999 --passwd abc123 --area 1001 --retry 10 --starttime 19:30 --endtime 21:30
+python main.py --userid 201900639999 --passwd abc123 --area 1001 --retry 10 --starttime 19:30 --endtime 21:30
 ```
