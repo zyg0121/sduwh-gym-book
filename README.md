@@ -16,8 +16,12 @@
 ### 下载和安装
 
 ```shell
+# 获取源码
 git clone https://github.com/zyg0121/sduwh-gym-book.git
+# 打开仓库目录
 cd sduwh-gym-book
+# 新建log文件夹来保存日志文件
+mkdir log
 # 安装python依赖
 pip install -r requirements.txt
 # 若由于网络问题无法获取依赖，请执行
