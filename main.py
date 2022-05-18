@@ -9,6 +9,7 @@ from logzero import logger
 from requests import RequestException
 
 from getId import getuser
+from getImg import get_image,get_image_file,ocr_image
 from threading import Thread
 import socket
 import socks
@@ -21,9 +22,15 @@ def bookseat(trys, buildingCode, kssj, jssj, cookies):
 
     logger.info("开始预约")
     book_url = 'http://freshmansno.wh.sdu.edu.cn:9007/common/submitApply'
-    data = {'buildingCode': buildingCode, 'kssj': kssj, 'jssj': jssj}
     while trys:
         try:
+            img_key,img_base64 = get_image(cookies)
+            print(img_key)
+            img_src = get_image_file(img_key,img_base64)
+            print(img_src)
+            value = ocr_image(img_src)
+            print(value)
+            data = {'key':img_key, 'value':value, 'buildingCode': buildingCode, 'kssj': kssj, 'jssj': jssj}
             res = requests.post(book_url, headers=headers, data=data, cookies=cookies)
             logger.info(res.status_code)
             if res.status_code == 200:
@@ -55,6 +62,6 @@ if __name__ == '__main__':
 
     cookies = getuser(paras.userid, paras.passwd)
 
-    thread1 = Thread(target=bookseat, args=(paras.retry, paras.area, paras.starttime, paras.endtime, cookies))
+    thread1 = Thread(target=bookseat, args=(paras.retry,paras.area, paras.starttime, paras.endtime, cookies))
 
     thread1.start()
