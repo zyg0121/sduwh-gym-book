@@ -106,6 +106,11 @@ def ocr_image(src):
         image1 = f.read()
     res4 = ocr.classification(image1)
 
-    res = (res4[0] + res3[1] + res2[2] + res1[3] + res0[3]).lower()
+    # res = (res4[0] + res3[1] + res2[2] + res1[3] + res0[3]).lower()
+    res = ""
+    try:
+        res = (res4[0] + res3[1] + res2[2] + res1[3] + res0[3]).lower()
+    except Exception as e:
+        print("识别验证码信息异常")
 
     return res

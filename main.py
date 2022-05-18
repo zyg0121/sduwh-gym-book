@@ -13,6 +13,15 @@ from getImg import get_image,get_image_file,ocr_image
 from threading import Thread
 import socket
 import socks
+import os,shutil
+
+def removedir(filepath):
+    if not os.path.exists(filepath):
+        os.mkdir(filepath)
+    else:
+        shutil.rmtree(filepath)
+        os.mkdir(filepath)
+
 
 
 def bookseat(trys, buildingCode, kssj, jssj, cookies):
@@ -36,6 +45,7 @@ def bookseat(trys, buildingCode, kssj, jssj, cookies):
             if res.status_code == 200:
                 if res.json()['code'] == 0:
                     logger.info("预约成功")
+                    removedir('img/')
                     break
                 else:
                     logger.info(res.json()['msg'])
@@ -48,6 +58,7 @@ def bookseat(trys, buildingCode, kssj, jssj, cookies):
             logger.error({e})
             break
     logger.info("预约失败")
+    removedir('img/')
 
 
 if __name__ == '__main__':
