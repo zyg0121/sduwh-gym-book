@@ -16,6 +16,8 @@
 
 ### 下载和安装
 
+注意：建议使用**Python版本大于等于3.8**
+
 ```shell
 # 获取源码
 git clone https://github.com/zyg0121/sduwh-gym-book.git
