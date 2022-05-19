@@ -21,8 +21,9 @@
 git clone https://github.com/zyg0121/sduwh-gym-book.git
 # 打开仓库目录
 cd sduwh-gym-book
-# 新建log文件夹来保存日志文件
+# 新建log文件夹来保存日志文件,新建img文件夹来保存验证码图片相关文件
 mkdir log
+mkdir img
 # 安装python依赖
 pip install -r requirements.txt
 # 若由于网络问题无法获取依赖，请执行

@@ -57,7 +57,8 @@ def bookseat(trys, buildingCode, kssj, jssj, cookies):
         except RequestException as e:
             logger.error({e})
             break
-    logger.info("预约失败")
+    if trys == 0:
+        logger.info("预约失败")
     removedir('img/')
 
 
