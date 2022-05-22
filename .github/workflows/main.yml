@@ -1,0 +1,28 @@
+name: 'GitHub Actions sduwh-gym-book'
+ 
+on:
+  push:
+  schedule:
+  # 定时任务，每天在北京时间7点运行python脚本
+    - cron: '0 23 * * *'
+
+jobs:
+  bot:
+    runs-on: ubuntu-18.04
+    steps:
+    # 首先copy git仓库到虚拟机上
+      - name: 'Checkout codes'
+        uses: actions/checkout@v1
+    # 指定python版本为3.8
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+    # 安装依赖
+      - name: 'Install dependencies'
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      # 运行脚本
+      - name: 'Run'
+        run: python main.py --userid ${{ secrets.USERID }} --passwd ${{ secrets.PASSWD }} --area ${{ secrets.AREA }} --retry ${{ secrets.RETRY }} --starttime ${{ secrets.STARTTIME }} --endtime ${{ secrets.ENDTIME }}
