@@ -3,8 +3,8 @@ name: 'GitHub Actions sduwh-gym-book'
 on:
   push:
   schedule:
-  # 定时任务，每天在北京时间7点运行python脚本
-    - cron: '0 23 * * *'
+  # 定时任务，每天在北京时间6点59分运行python脚本
+    - cron: '59 22 * * *'
 
 jobs:
   bot:
@@ -18,13 +18,14 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
-    # 安装依赖
+    # 安装依赖，安装依赖大约15s，这里再休息40s，等到7点前几秒开始运行
       - name: 'Install dependencies'
         run: |
           mkdir log
           mkdir img
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          sleep 40
       # 运行脚本
       - name: 'Run'
         run: python main.py --userid ${{ secrets.USERID }} --passwd ${{ secrets.PASSWD }} --area ${{ secrets.AREA }} --retry ${{ secrets.RETRY }} --starttime ${{ secrets.STARTTIME }} --endtime ${{ secrets.ENDTIME }}
